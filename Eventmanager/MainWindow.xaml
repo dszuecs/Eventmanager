@@ -1,0 +1,510 @@
+﻿<Window x:Class="Eventmanager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:Eventmanager"
+        x:Name="MainWin"
+        mc:Ignorable="d"
+        Title="Sportakrobatik Turniermanager Manager" Height="1050" Width="1680"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized">
+
+    <Grid>
+
+        <Menu>
+            <MenuItem x:Name="Datei" Header="_Datei">
+                <MenuItem x:Name="Neu" Header="_Neu"  Click="Neu_Click"/>
+                <MenuItem x:Name="Öffnen" Header="_Öffnen" Click="Öffnen_Click"/>
+                <MenuItem x:Name="Speichern" Header="_Speichern" Click="Speichern_Click"/>
+                <MenuItem x:Name="Importieren" Header="_Importieren" Click="Importieren_Click"/>
+                <MenuItem x:Name="Exportieren" Header="_Exportieren" Click="Exportieren_Click"/>
+                <MenuItem x:Name="Drucken" Header="_Drucken" Click="Drucken_Click" />
+                <Separator />
+                <MenuItem x:Name="Beenden" Header="_Beenden" Click="Beenden_Click" />
+            </MenuItem>
+        </Menu>
+
+        <Grid x:Name="Seite1" Visibility="Hidden">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="Start_Grid"  Grid.Column="1" Grid.Row="1" Background="DarkGray">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="0.3*" />
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.4*" />
+                    <RowDefinition Height="0.7*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="0.7*" />
+                </Grid.RowDefinitions>
+
+
+                <Label x:Name="Start_Label" Grid.Column="1" Grid.Row="1" Content="Sportakrobatik Turniermanager" Margin="3" FontSize="36" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+                <Button x:Name="NeuesTurnier_Button" Grid.Column="1" Grid.Row="2" Content="Neues Turnier" Margin="15" FontSize="22" Click="NeuesTurnier_Button_Click"/>
+                <Button x:Name="TurnierÖffnen_Button" Grid.Column="1" Grid.Row="3" Content="Turnier Öffnen" Margin="15" FontSize="22" Click="TurnierÖffnen_Button_Click"/>
+                <Button x:Name="Beenden_Button" Grid.Column="1" Grid.Row="4" Content="Beenden" Margin="15" FontSize="22" Click="Beenden_Button_Click"/>
+            </Grid>
+
+        </Grid>
+
+        <Grid x:Name="Seite2" Visibility="Hidden">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="0.5*" />
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.7*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="0.7*" />
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="Turniername_Grid" Background="DarkGray" Grid.Column="1" Grid.Row="1">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.1*" />
+                    <ColumnDefinition Width="1.5*" />
+                    <ColumnDefinition Width="0.6*" />
+                    <ColumnDefinition Width="0.1*" />
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*" />
+                    <RowDefinition Height="0.35*" />
+                    <RowDefinition Height="0.2*" />
+                    <RowDefinition Height="0.5*" />
+                    <RowDefinition Height="0.35*" />
+                    <RowDefinition Height="0.2*" />
+                    <RowDefinition Height="0.5*" />
+                    <RowDefinition Height="0.35*" />
+                    <RowDefinition Height="0.5*" />
+                    <RowDefinition Height="0.5*" />
+                    <RowDefinition Height="0.3*" />
+                </Grid.RowDefinitions>
+
+                <Label x:Name="TurniernameNeu_Label" Grid.Column="1" Grid.Row="0" FontSize="18" FontWeight="Bold"  HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Content="Turniername:"/>
+                <TextBox x:Name="TurniernameNeu_TextBox" Grid.Column ="1" Grid.ColumnSpan="2" Grid.Row="1" Text="Neues Turnier" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+                <Label x:Name="OrtNeu_Label" Grid.Column="1" Grid.Row="3" FontSize="18" FontWeight="Bold"  HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Content="Ort:"/>
+                <TextBox x:Name="OrtNeu_TextBox" Grid.Column ="1" Grid.ColumnSpan="2" Grid.Row="4" Text="Dresden Klotzsche" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+                <Label x:Name="DatumNeu_Label" Grid.Column="1" Grid.Row="6" FontSize="18" FontWeight="Bold"  HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Content="Datum:"/>
+                <xctk:TimePicker x:Name="WettkampfDatum_TimePicker" Grid.Column="1" Grid.Row="7" Format="RFC1123" Value="{Binding Path=Datum}"/>
+                <Button x:Name="TurniernameNeu_Button" Grid.Column="2" Grid.Row="9" Content="Weiter" Click="TurniernameNeu_Button_Click"/>
+
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="Seite3" Visibility="Hidden">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="0.5*" />
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.7*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="0.7*" />
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="Jury_Grid" Background="DarkGray" Grid.Column="1" Grid.Row="1">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.1*" />
+                    <ColumnDefinition Width="0.7*" />
+                    <ColumnDefinition Width="0.05*" />
+                    <ColumnDefinition Width="0.35*" />
+                    <ColumnDefinition Width="0.35*" />
+                    <ColumnDefinition Width="0.1*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.08*" />
+                    <RowDefinition Height="0.055*" />
+                    <RowDefinition Height="0.07*" />
+                    <RowDefinition Height="0.01*" />
+                    <RowDefinition Height="0.05*" />
+                    <RowDefinition Height="0.07*" />
+                    <RowDefinition Height="0.01*" />
+                    <RowDefinition Height="0.05*" />
+                    <RowDefinition Height="0.07*" />
+                    <RowDefinition Height="0.01*" />
+                    <RowDefinition Height="0.05*" />
+                    <RowDefinition Height="0.07*" />
+                    <RowDefinition Height="0.01*" />
+                    <RowDefinition Height="0.05*" />
+                    <RowDefinition Height="0.07*" />
+                    <RowDefinition Height="0.01*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.02*" />
+
+                </Grid.RowDefinitions>
+                <Label x:Name="Jury_label" Grid.Column="1" Grid.Row="0" Content="Kampfrichter" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"  VerticalContentAlignment="Center"/>
+                <Label x:Name="CJP_label" Grid.Column="1" Grid.Row="1" Content="CJP" FontSize="12" FontWeight="Bold" HorizontalContentAlignment="Left"  VerticalContentAlignment="Top"/>
+                <TextBox x:Name="CJP_Textbox" Grid.Column="1" Grid.Row="2" Margin="10, 5" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center"/>
+                <Label x:Name="T1_label" Grid.Column="1" Grid.Row="4" Content="Technik 1" FontSize="12" FontWeight="Bold" HorizontalContentAlignment="Left"  VerticalContentAlignment="Top"/>
+                <TextBox x:Name="T1Name_Textbox" Grid.Column="1" Grid.Row="5" Margin="10, 5" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center"/>
+                <Label x:Name="T2_label" Grid.Column="1" Grid.Row="7" Content="Technik 2" FontSize="12" FontWeight="Bold" HorizontalContentAlignment="Left"  VerticalContentAlignment="Top"/>
+                <TextBox x:Name="T2Name_Textbox" Grid.Column="1" Grid.Row="8" Margin="10, 5" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center"/>
+                <Label x:Name="T3_label" Grid.Column="1" Grid.Row="10" Content="Technik 3" FontSize="12" FontWeight="Bold" HorizontalContentAlignment="Left"  VerticalContentAlignment="Top"/>
+                <TextBox x:Name="T3Name_Textbox" Grid.Column="1" Grid.Row="11" Margin="10, 5" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center"/>
+                <Label x:Name="T4_label" Grid.Column="1" Grid.Row="13" Content="Technik 4" FontSize="12" FontWeight="Bold" HorizontalContentAlignment="Left"  VerticalContentAlignment="Top"/>
+                <TextBox x:Name="T4Name_Textbox" Grid.Column="1" Grid.Row="14" Margin="10, 5" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center"/>
+
+                <Label x:Name="Schwierigkeitskampfrichter_label" Grid.Column="3" Grid.Row="1" Content="Schwierigkeitskampfrichter" FontSize="12" FontWeight="Bold" HorizontalContentAlignment="Left"  VerticalContentAlignment="Top"/>
+                <TextBox x:Name="Schwierigkeitskampfrichter_Textbox" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2" Margin="10, 5" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center"/>
+                <Label x:Name="A1_label" Grid.Column="3" Grid.Row="4" Content="Artistik 1" FontSize="12" FontWeight="Bold" HorizontalContentAlignment="Left"  VerticalContentAlignment="Top"/>
+                <TextBox x:Name="A1Name_Textbox" Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="2" Margin="10, 5" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center"/>
+                <Label x:Name="A2_label" Grid.Column="3" Grid.Row="7" Content="Artistik 2" FontSize="12" FontWeight="Bold" HorizontalContentAlignment="Left"  VerticalContentAlignment="Top"/>
+                <TextBox x:Name="A2Name_Textbox" Grid.Column="3" Grid.Row="8" Grid.ColumnSpan="2" Margin="10, 5" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center"/>
+                <Label x:Name="A3_label" Grid.Column="3" Grid.Row="10" Content="Artistik 3" FontSize="12" FontWeight="Bold" HorizontalContentAlignment="Left"  VerticalContentAlignment="Top"/>
+                <TextBox x:Name="A3Name_Textbox" Grid.Column="3" Grid.Row="11" Grid.ColumnSpan="2" Margin="10, 5" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center"/>
+                <Label x:Name="A4_label" Grid.Column="3" Grid.Row="13" Content="Artistik 4" FontSize="12" FontWeight="Bold" HorizontalContentAlignment="Left"  VerticalContentAlignment="Top"/>
+                <TextBox x:Name="A4Name_Textbox" Grid.Column="3" Grid.Row="14" Grid.ColumnSpan="2" Margin="10, 5" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center"/>
+
+                <Button x:Name="ZurückSeite2_Button" Content="&lt;&lt;&lt; Zurück" Grid.Column="3" Grid.Row="16" Margin="15, 5" Click="ZurückSeite2_Button_Click"/>
+                <Button x:Name="WeiterSeite3_Button" Content="Weiter &gt;&gt;&gt;" Grid.Column="4" Grid.Row="16" Margin="15, 5" Click="WeiterSeite3_Button_Click"/>
+
+            </Grid>
+
+        </Grid>
+
+
+
+        <Grid x:Name="Seite4" Visibility="Hidden">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.05*" />
+                <ColumnDefinition Width="0.25*" />
+                <ColumnDefinition Width="0.25*" />
+                <ColumnDefinition Width="0.1*" />
+                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="0.05*" />
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="0.05*" />
+                <RowDefinition Height="0.12*" />
+                <RowDefinition Height="0.2*" />
+            </Grid.RowDefinitions>
+
+
+            <Label x:Name="Turniername_Label" Grid.Column="1" Grid.Row="0"  Grid.ColumnSpan="4" FontSize="36" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+
+            <Grid x:Name="StarterHinzufügen_Grid" Grid.Column="1" Grid.Row="1"  Grid.ColumnSpan="2" Background="DarkGray">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="91*" />
+                    <ColumnDefinition Width="90*" />
+                    <ColumnDefinition Width="91*" />
+                    <ColumnDefinition Width="Auto" />
+
+                    <ColumnDefinition Width="18*" />
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.09*" />
+                    <RowDefinition Height="0.06*" />
+                    <RowDefinition Height="0.08*" />
+                    <RowDefinition Height="0.02*" />
+                    <RowDefinition Height="0.06*" />
+                    <RowDefinition Height="0.15*" />
+                    <RowDefinition Height="0.05*" />
+                    <RowDefinition Height="0.08*" />
+                    <RowDefinition Height="0.04*" />
+                    <RowDefinition Height="0.05*" />
+                    <RowDefinition Height="0.07*" />
+                    <RowDefinition Height="0.04*" />
+                    <RowDefinition Height="0.05*" />
+                    <RowDefinition Height="0.07*" />
+                    <RowDefinition Height="0.05*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.25*" />
+                </Grid.RowDefinitions>
+
+                <Label x:Name="StarterHinzufügen_Label" Content="Starter hinzufügen"  Grid.Column="0" Grid.Row="0"  Grid.ColumnSpan="2" FontSize="16" FontWeight="Bold"/>
+                <Label x:Name="Startnummer_Label" Content="Startnummer"  Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="Startnummer_Textbox" Grid.Column="0" Grid.Row="2" Margin="5, 5" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center"/>
+                <Label x:Name="Riege_Label" Content="Riege"  Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="Riege_Textbox" Grid.Column="1" Grid.Row="2" Margin="5, 5" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center"/>
+                <Label x:Name="Verein_Label" Content="Verein" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="Verein_Textbox" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Margin="5, 5" TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center"/>
+                <Label x:Name="Starter_Label" Content="Starter Namen" Grid.Column="0" Grid.Row="4" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="Starter_Textbox" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="4" Margin="5, 5" TextWrapping="Wrap" TextAlignment="Left"/>
+
+                <Label x:Name="Klasse_Label" Content="Klasse" Grid.Column="0" Grid.Row="6" HorizontalContentAlignment="Center"/>
+                <ComboBox x:Name="Klasse_Combobox"  SelectedValuePath="Content" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Margin="5,5,70,5">
+                    <ComboBoxItem Name="NKL1">NKL 1</ComboBoxItem>
+                    <ComboBoxItem Name="NKL2">NKL 2</ComboBoxItem>
+                    <ComboBoxItem Name="AgeGroup11">Age Group 11 - 16</ComboBoxItem>
+                    <ComboBoxItem Name="AgeGroup12">Age Group 12 - 18</ComboBoxItem>
+                    <ComboBoxItem Name="AgeGroup13">Age Group 13 - 19</ComboBoxItem>
+                    <ComboBoxItem Name="Junior1">Junior 1</ComboBoxItem>
+                    <ComboBoxItem Name="Junior2">Junior 2</ComboBoxItem>
+                    <ComboBoxItem Name="Senior">Senior</ComboBoxItem>
+                    <ComboBoxItem Name="WeNa">WeNa</ComboBoxItem>
+                </ComboBox>
+                <Label x:Name="Disziplin_Label" Content="Disziplin" Grid.Column="2" Grid.Row="6"/>
+                <ComboBox x:Name="Disziplin_Combobox" SelectedValuePath="Content" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="3" Margin="90,5,5,5">
+                    <ComboBoxItem Name="DamenPaare">Damen Paare [W2]</ComboBoxItem>
+                    <ComboBoxItem Name="HerrenPaare">Herren Paare [M2]</ComboBoxItem>
+                    <ComboBoxItem Name="DamenGruppe">Damen Gruppe [W3]</ComboBoxItem>
+                    <ComboBoxItem Name="HerrenGruppe">Herren Gruppe [M4]</ComboBoxItem>
+                    <ComboBoxItem Name="mixedPaare">mixed Paare [MX]</ComboBoxItem>
+                    <ComboBoxItem Name="DamenPodest">Damen Podest</ComboBoxItem>
+                    <ComboBoxItem Name="HerrenPodest">Herren Podest</ComboBoxItem>
+                </ComboBox>
+
+                <Button x:Name="Hinzufügen_Button" Content="Hinzufügen" Click="Hinzufügen_Button_Click" Grid.Column="0" Grid.Row="15" Margin="5"/>
+                <Button x:Name="Ändern_Button" Content="Ändern" Grid.Column="1" Grid.Row="15" Margin="5" Click="Ändern_Button_Click"/>
+                <Button x:Name="Löschen_Button" Content="Löschen" Grid.Column="2" Grid.Row="15" Margin="5" Click="Löschen_Button_Click"/>
+
+                <Label x:Name="StartVorbereitung_Label" Content="Start Vorbereitung" Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalAlignment="Center"></Label>
+                <xctk:TimePicker x:Name="StartVorbereitung_TimePicker" Grid.Column="0" Grid.Row="10" Grid.ColumnSpan="2" Margin="30, 4" Format="RFC1123" Value="{Binding Path=StartVorbereitung}"/>
+                <Label x:Name="StartWettkampf_Label" Content="Start Wettkampf" Grid.Column="0" Grid.Row="12" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                <xctk:TimePicker x:Name="StartWettkampf_TimePicker" Grid.Column="0" Grid.Row="13" Grid.ColumnSpan="2" Margin="30, 4" Format="RFC1123" Value="{Binding Path=StartWettkampf}"/>
+
+                <Label x:Name="StartzeitNutzen_Label" Content="Startzeit nutzen:" Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="2"></Label>
+                <CheckBox x:Name="StartzeitNutzen_CheckBox" Grid.Column="3" Grid.Row="9" IsChecked="True" VerticalAlignment="Bottom" Margin="5,0,5,5" Checked="StartzeitNutzen_CheckBox_Checked" Unchecked="StartzeitNutzen_CheckBox_Unchecked" ></CheckBox>
+            </Grid>
+
+
+            <DataGrid AutoGenerateColumns="True" Grid.Column="4" Grid.Row="1" AlternationCount="2" AlternatingRowBackground="Bisque" CanUserAddRows="True" x:Name="Starterliste_DataGrid" ItemsSource="{Binding Starter}" SelectionChanged="Starterliste_DataGrid_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Startnummer" IsReadOnly="True" Binding="{Binding Path=Startnummer}" Width="0.3*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Riege" IsReadOnly="True" Binding="{Binding Path=Riege}" Width="0.3*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Starter" IsReadOnly="True" Binding="{Binding Path=Starter}" Width="*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Verein" IsReadOnly="True"  Binding="{Binding Path=Verein}" Width="0.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Klasse" IsReadOnly="True" Binding="{Binding Path=Klasse}" Width="0.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Disziplin" IsReadOnly="True"  Binding="{Binding Path=Disziplin}" Width="0.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="StartVorbereitung" IsReadOnly="True"  Binding="{Binding Path=StartVorbereitung}" Width="0.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="StartWettkampf" IsReadOnly="True"  Binding="{Binding Path=StartWettkampf}" Width="0.5*"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Button x:Name="ZurückTurnierButton" Content="&lt;&lt;&lt; Zurück" Click="ZurückTurnierButton_Click" Grid.Column="1" Grid.Row="3" Margin="15"/>
+            <Button x:Name="WeiterTurnierButton" Content="Weiter &gt;&gt;&gt;" Click="WeiterTurnierButton_Click" Grid.Column="2" Grid.Row="3" Margin="15"/>
+
+        </Grid>
+
+        <Grid x:Name="Seite5" Visibility="Hidden">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.05*" />
+                <ColumnDefinition Width="0.3*" />
+                <ColumnDefinition Width="0.7*" />
+                <ColumnDefinition Width="0.1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="0.05*" />
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="0.05*" />
+                <RowDefinition Height="0.1*" />
+                <RowDefinition Height="0.1*" />
+            </Grid.RowDefinitions>
+
+            <Label x:Name="Turniername_LabelAktuell" Grid.Column="1" Grid.Row="0"  Grid.ColumnSpan="4" FontSize="36" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+
+            <Grid x:Name="Aktuelle_StarterGrid" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Background="DarkGray">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.05*" />
+                    <ColumnDefinition Width="0.45*" />
+                    <ColumnDefinition Width="0.19*" />
+                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="0.05*" />
+                    <ColumnDefinition Width="0.45*" />
+                    <ColumnDefinition Width="0.19*" />
+                    <ColumnDefinition Width="0.35*" />
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.3*" />
+                    <ColumnDefinition Width="0.4*" />
+                    <ColumnDefinition Width="0.05*" />
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.05*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.03*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.03*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.03*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.03*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.03*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.03*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.03*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.03*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.03*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.07*" />
+                    <RowDefinition Height="0.12*" />
+                    <RowDefinition Height="0.08*" />
+                </Grid.RowDefinitions>
+
+                <Label x:Name="StartNummer_Aktuell_Beschriftung" Content="Startnummer:" Grid.Column="1" Grid.Row="1" FontSize="12"></Label>
+                <TextBox x:Name="StartNummer_Aktuell" Grid.Column="2" Grid.Row="1" FontSize="16" Background="White" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" KeyDown="StartNummer_Aktuell_KeyDown"></TextBox>
+                <Label x:Name="Riege_Aktuell_Beschriftung" Content="Riege:" Grid.Column="5" Grid.Row="1" FontSize="12"></Label>
+                <Label x:Name="Riege_Aktuell" Grid.Column="6" Grid.Row="1" FontSize="16" Background="White" FontWeight="Bold" HorizontalContentAlignment="Left"></Label>
+
+                <Label x:Name="Klasse_Aktuell_Beschriftung" Content="Klasse:" Grid.Column="1" Grid.Row="3" FontSize="12"></Label>
+                <Label x:Name="Klasse_Aktuell" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" FontSize="12" Background="White" FontWeight="Bold" HorizontalContentAlignment="Left"></Label>
+                <Label x:Name="Disziplin_Aktuell_Beschriftung" Content="Disziplin:" Grid.Column="5" Grid.Row="3" FontSize="16"></Label>
+                <Label x:Name="Disziplin_Aktuell" Grid.Column="6" Grid.Row="3" Grid.ColumnSpan="2" FontSize="12" Background="White" FontWeight="Bold" HorizontalContentAlignment="Left"></Label>
+
+                <Label x:Name="Verein_Aktuell_Beschriftung" Content="Verein:" Grid.Column="1" Grid.Row="5" FontSize="12"></Label>
+                <Label x:Name="Verein_Aktuell" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="6" FontSize="12" Background="White" FontWeight="Bold" HorizontalContentAlignment="Left"></Label>
+
+                <Label x:Name="Starter_Aktuell_Beschriftung" Content="Starter:" Grid.Column="1" Grid.Row="7" FontSize="12"></Label>
+                <Label x:Name="Starter_Aktuell" Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="8" FontSize="16" Background="White" FontWeight="Bold" HorizontalContentAlignment="Left"></Label>
+
+                <Label x:Name="Technik1_Beschriftung" Content="Technik 1:" Grid.Column="1" Grid.Row="9" FontSize="16"></Label>
+                <TextBox x:Name="Technik1_Textbox" Grid.Column="2" Grid.Row="9" FontSize="16" Background="White" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></TextBox>
+                <Label x:Name="Artistik1_Beschriftung" Content="Artistik 1:" Grid.Column="5" Grid.Row="9" FontSize="16"></Label>
+                <TextBox x:Name="Artistik1_Textbox" Grid.Column="6" Grid.Row="9" FontSize="16" Background="White" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></TextBox>
+
+                <Label x:Name="Technik2_Beschriftung" Content="Technik 2:" Grid.Column="1" Grid.Row="11" FontSize="16"></Label>
+                <TextBox x:Name="Technik2_Textbox" Grid.Column="2" Grid.Row="11" FontSize="16" Background="White" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></TextBox>
+                <Label x:Name="Artistik2_Beschriftung" Content="Artistik 2:" Grid.Column="5" Grid.Row="11" FontSize="16"></Label>
+                <TextBox x:Name="Artistik2_Textbox" Grid.Column="6" Grid.Row="11" FontSize="16" Background="White" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></TextBox>
+
+                <Label x:Name="Technik3_Beschriftung" Content="Technik 3:" Grid.Column="1" Grid.Row="13" FontSize="16"></Label>
+                <TextBox x:Name="Technik3_Textbox" Grid.Column="2" Grid.Row="13" FontSize="16" Background="White" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></TextBox>
+                <Label x:Name="Artistik3_Beschriftung" Content="Artistik 3:" Grid.Column="5" Grid.Row="13" FontSize="16"></Label>
+                <TextBox x:Name="Artistik3_Textbox" Grid.Column="6" Grid.Row="13" FontSize="16" Background="White" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></TextBox>
+
+                <Label x:Name="Technik4_Beschriftung" Content="Technik 4:" Grid.Column="1" Grid.Row="15" FontSize="16"></Label>
+                <TextBox x:Name="Technik4_Textbox" Grid.Column="2" Grid.Row="15" FontSize="16" Background="White" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></TextBox>
+                <Label x:Name="Artistik4_Beschriftung" Content="Artistik 4:" Grid.Column="5" Grid.Row="15" FontSize="16"></Label>
+                <TextBox x:Name="Artistik4_Textbox" Grid.Column="6" Grid.Row="15" FontSize="16" Background="White" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></TextBox>
+
+                <Label x:Name="Schwierigkeit_Beschriftung" Content="Schwierigkeit:" Grid.Column="8" Grid.Row="9" FontSize="16"></Label>
+                <TextBox x:Name="Schwierigkeit_Textbox" Grid.Column="9" Grid.Row="9" FontSize="16" Background="White" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></TextBox>
+
+                <Label x:Name="Abzüge_Beschriftung" Content="Abzüge:" Grid.Column="8" Grid.Row="11" FontSize="16"></Label>
+                <TextBox x:Name="Abzüge_Textbox" Grid.Column="9" Grid.Row="11" FontSize="16" Background="White" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></TextBox>
+
+                <Label x:Name="MaxTechnik_Beschriftung" Content="Max Technik:" Grid.Column="1" Grid.Row="17" FontSize="16"></Label>
+                <Label x:Name="MaxTechnik_Label" Grid.Column="2" Grid.Row="17" FontSize="16" Background="White" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></Label>
+                <Label x:Name="MaxArtistik_Beschriftung" Content="Max Artistik:" Grid.Column="5" Grid.Row="17" FontSize="16"></Label>
+                <Label x:Name="MaxArtistik_Label" Grid.Column="6" Grid.Row="17" FontSize="16" Background="White" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></Label>
+
+                <Label x:Name="MinTechnik_Beschriftung" Content="Min Technik:" Grid.Column="1" Grid.Row="19" FontSize="16"></Label>
+                <Label x:Name="MinTechnik_Label" Grid.Column="2" Grid.Row="19" FontSize="16" Background="White" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></Label>
+                <Label x:Name="MinArtistik_Beschriftung" Content="Min Artistik:" Grid.Column="5" Grid.Row="19" FontSize="16"></Label>
+                <Label x:Name="MinArtistik_Label" Grid.Column="6" Grid.Row="19" FontSize="16" Background="White" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></Label>
+
+                <Label x:Name="Technik_Beschriftung" Content="Technik:" Grid.Column="1" Grid.Row="21" FontSize="16" FontWeight="Bold"></Label>
+                <Label x:Name="Technik_Label" Grid.Column="2" Grid.Row="21" Grid.ColumnSpan="2" FontSize="16" Background="White" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0,0,20,0"></Label>
+                <Label x:Name="Artistik_Beschriftung" Content="Artistik:" Grid.Column="5" Grid.Row="21" FontSize="16" FontWeight="Bold"></Label>
+                <Label x:Name="Artistik_Label" Grid.Column="6" Grid.Row="21" Grid.ColumnSpan="2" FontSize="16" Background="White" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0,0,50,0"></Label>
+
+                <Label x:Name="GesamtWertung_Beschriftung" Content="G-Wertung:" Grid.Column="1" Grid.Row="23" FontSize="16" FontWeight="Bold"></Label>
+                <Label x:Name="GesamtWertung_Label" Grid.Column="2" Grid.Row="23" Grid.ColumnSpan="2" FontSize="16" Background="White" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0,0,20,0"></Label>
+                <Label x:Name="Platzierung_Beschriftung" Content="Platz:" Grid.Column="5" Grid.Row="23" FontSize="16" FontWeight="Bold"></Label>
+                <Label x:Name="Platzierung_Label" Grid.Column="6" Grid.Row="23" FontSize="16" Background="White" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></Label>
+
+                <Button x:Name="Berechnen_Button" Content="Berechnen" Grid.Column="3" Grid.Row="26" Grid.ColumnSpan="3" Grid.RowSpan="2" FontSize="16" Click="Berechnen_Button_Click"></Button>
+                <Button x:Name="NaechsteStarter_Button" Content="Nächster Starter &gt;&gt;&gt;" Grid.Column="8" Grid.Row="15" Grid.ColumnSpan="2" Grid.RowSpan="2" FontSize="16" Click="NaechsteStarter_Button_Click"></Button>
+                <Button x:Name="VorherigeStarter_Button" Content="&lt;&lt;&lt; Vorherige Starter" Grid.Column="8" Grid.Row="19" Grid.ColumnSpan="2" Grid.RowSpan="2" FontSize="16" Click="VorherigeStarter_Button_Click"></Button>
+
+            </Grid>
+
+            <Button x:Name="ZurückSeite3Button" Content="&lt;&lt;&lt; Zurück" Grid.Column="1" Grid.Row="3" Margin="10" Click="ZurückSeite3Button_Click"></Button>
+
+            <DataGrid x:Name="RankingGrid" AutoGenerateColumns="True" Grid.Column="4" Grid.Row="1" AlternationCount="2" AlternatingRowBackground="Bisque" CanUserAddRows="True" ItemsSource="{Binding Starter}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Platz" IsReadOnly="True" Binding="{Binding Path=Platz}" Width="0.3*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Start- Nr." IsReadOnly="True" Binding="{Binding Path=Startnummer}" Width="0.3*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Punkte" IsReadOnly="True" Binding="{Binding Path=PunkteGesamt}" Width="0.3*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Starter" IsReadOnly="True" Binding="{Binding Path=Starter}" Width="*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Verein" IsReadOnly="True"  Binding="{Binding Path=Verein}" Width="0.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Klasse" IsReadOnly="True" Binding="{Binding Path=Klasse}" Width="0.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Disziplin" IsReadOnly="True"  Binding="{Binding Path=Disziplin}" Width="0.5*"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <Grid x:Name="DruckGrid" Visibility="Visible">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.07*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="0.07*" />
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="0.1*" />
+            </Grid.RowDefinitions>
+
+            <Label x:Name="TurniernameDruck_Label" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" FontSize="36" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+
+            <DataGrid x:Name="ResultGrid" AutoGenerateColumns="True" Grid.Column="1" Grid.Row="1" AlternationCount="2" AlternatingRowBackground="Bisque" CanUserAddRows="True" ItemsSource="{Binding Starter}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Starter" IsReadOnly="True" Binding="{Binding Path=Starter}" Width="*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Klasse" IsReadOnly="True" Binding="{Binding Path=Klasse}" Width="0.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Disziplin" IsReadOnly="True"  Binding="{Binding Path=Disziplin}" Width="0.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Verein" IsReadOnly="True"  Binding="{Binding Path=Verein}" Width="0.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="T1" IsReadOnly="True"  Binding="{Binding Path=Punkte.Technik1}" Width="0.2*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="T2" IsReadOnly="True"  Binding="{Binding Path=Punkte.Technik2}" Width="0.2*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="T3" IsReadOnly="True"  Binding="{Binding Path=Punkte.Technik3}" Width="0.2*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="T4" IsReadOnly="True"  Binding="{Binding Path=Punkte.Technik4}" Width="0.2*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="A1" IsReadOnly="True"  Binding="{Binding Path=Punkte.Artistik1}" Width="0.2*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="A2" IsReadOnly="True"  Binding="{Binding Path=Punkte.Artistik2}" Width="0.2*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="A3" IsReadOnly="True"  Binding="{Binding Path=Punkte.Artistik3}" Width="0.2*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="A4" IsReadOnly="True"  Binding="{Binding Path=Punkte.Artistik4}" Width="0.2*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Schwierigkeit" IsReadOnly="True"  Binding="{Binding Path=Punkte.Schwierigkeit}" Width="0.3*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Abzüge" IsReadOnly="True"  Binding="{Binding Path=Punkte.Abzüge}" Width="0.3*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Wertung" IsReadOnly="True" Binding="{Binding Path=PunkteGesamt}" Width="0.3*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Platz" IsReadOnly="True" Binding="{Binding Path=Platz}" Width="0.3*"></DataGridTextColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+
+
+    </Grid>
+
+
+</Window>
